@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Crypto Helper</string>
+
+    <string name="bitcoin">Bitcoin</string>
+    <string name="ethereum">Ethereum</string>
+    <string name="ripple">Ripple</string>
+</resources>
