@@ -3,7 +3,6 @@ package com.example.cryptohelper.httpRequest.coinInfo;
 import com.google.gson.annotations.SerializedName;
 
 public class CoinInfoResponse {
-    String CoinId = "1";
     @SerializedName("status")
     StatusRestModel status;
     @SerializedName("data")

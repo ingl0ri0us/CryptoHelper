@@ -8,19 +8,19 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import moxy.InjectViewState;
+import moxy.MvpPresenter;
+import timber.log.Timber;
 
-class MainPresenter implements MainPresenterInterface {
+@InjectViewState
+class MainPresenter
+        extends MvpPresenter<MainViewInterface>
+{
 
     private static final String ApiKey = "bc3489ce-f35c-429b-9671-ea67d57282fc";
-    private MainViewInterface mvi;
 
-    MainPresenter(MainViewInterface mvi) {
-        this.mvi = mvi;
-    }
-
-    @Override
-    public void getCoinInfo(String coinName) {
-        getObservable(coinName).subscribeWith(getObserver());
+    void getCoinInfo(String coinId) {
+        getObservable(coinId).subscribeWith(getObserver());
     }
 
     private Observable<CoinInfoResponse> getObservable(String coinId) {
@@ -36,17 +36,20 @@ class MainPresenter implements MainPresenterInterface {
         return new DisposableObserver<CoinInfoResponse>() {
             @Override
             public void onNext(CoinInfoResponse coinInfoResponse) {
-                mvi.displayCoinInfo(coinInfoResponse);
+                Timber.d("OnNext");
+                getViewState().displayCoinInfo(coinInfoResponse);
             }
 
             @Override
             public void onError(Throwable e) {
-
+                Timber.d(e);
+                e.printStackTrace();
+                getViewState().displayError("Error fetching data");
             }
 
             @Override
             public void onComplete() {
-
+                Timber.d("Completed");
             }
         };
     }
