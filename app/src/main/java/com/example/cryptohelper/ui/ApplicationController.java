@@ -1,6 +1,8 @@
-package com.example.cryptohelper;
+package com.example.cryptohelper.ui;
 
 import android.app.Application;
+
+import com.example.cryptohelper.BuildConfig;
 
 import butterknife.ButterKnife;
 import timber.log.Timber;

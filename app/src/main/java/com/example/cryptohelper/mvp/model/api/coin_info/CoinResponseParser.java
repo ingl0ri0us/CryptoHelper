@@ -1,7 +1,7 @@
-package com.example.cryptohelper.httpRequest.coinInfo;
+package com.example.cryptohelper.mvp.model.api.coin_info;
 
 
-public class CoinInfoParser {
+public class CoinResponseParser {
 
     private String coinName;
     private String coinUrl;
@@ -10,7 +10,7 @@ public class CoinInfoParser {
     private int errorCode;
     private String errorMessage;
 
-    public CoinInfoParser(CoinInfoResponse coinInfoResponse) {
+    public CoinResponseParser(CoinInfoResponse coinInfoResponse) {
         coinName = coinInfoResponse.data.requestKey.name;
         coinUrl = coinInfoResponse.data.requestKey.urls.website[0];
         coinDescription = coinInfoResponse.data.requestKey.description;
